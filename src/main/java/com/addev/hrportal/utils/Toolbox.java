@@ -21,10 +21,9 @@ import java.util.Random;
 
 import static com.addev.hrportal.pageobjects.AbstractPage.driver;
 
-/* Class for defining tools that can be used in any project
-such as clear field, input value and click button
+/**
+ * Class for defining tools that can be used in any project such as clear field, input value and click button
  */
-
 public class Toolbox extends Logging {
 
 
