@@ -7,7 +7,7 @@ import static com.addev.hrportal.utils.Toolbox.initProp;
 
 public interface IConstantes {
 
-	 // Définition des variables de connexion
+    // Définition des variables de connexion
     Properties prop = initProp("src/main/resources/data/variablesGlobales.properties");
     String NAVIGATEUR = System.getProperty("NAVIGATEUR", prop.getProperty("NAVIGATEUR"));
     String URL = System.getProperty("URL_PORTAL", prop.getProperty("URL_PORTAL"));
