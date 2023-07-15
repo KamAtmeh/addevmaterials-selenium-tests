@@ -12,9 +12,10 @@ import static com.addev.hrportal.utils.Toolbox.*;
 @ExtendWith(ScreenshotOnFailureExtension.class)
 public class _02_A_SaisieSimpleTest extends _00_AbstractTest {
 
-	/*
-     *********** TEST STARTS HERE ***********
-     */
+	/**
+	 * TEST STARTS HERE
+	 * @throws Throwable
+	 */
 	@Test
     public void _02_A_SaisieSimpleTest() throws Throwable {
 

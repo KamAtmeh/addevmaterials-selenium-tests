@@ -13,9 +13,10 @@ import static com.addev.hrportal.utils.Toolbox.clickElement;
 @ExtendWith(ScreenshotOnFailureExtension.class)
 public class _01_A_NavigationClassiqueTest extends _00_AbstractTest {
 
-	/*
-     *********** TEST STARTS HERE ***********
-     */
+	/**
+	 * TEST STARTS HERE
+	 * @throws Throwable
+	 */
 	@Test
     public void _01_A_NavigationClassiqueTest() throws Throwable {
 

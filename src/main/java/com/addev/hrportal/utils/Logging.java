@@ -14,6 +14,9 @@ public class Logging {
 	public static String className;
 	public static Logger LOGGER;
 
+	/**
+	 * METHOD TO INITIALIZE LOGGER
+	 */
 	public Logging() {
 		this.className = this.getClass().getSimpleName();
 		LocalDateTime currentDate = LocalDateTime.now();

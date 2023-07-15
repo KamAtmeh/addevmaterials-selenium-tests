@@ -13,18 +13,19 @@ import static com.addev.hrportal.utils.Toolbox.*;
 
 public class _00_AbstractTest extends Logging implements IConstantes {
 
-    /*
-    ********* INITIALIZE PARAMETERS ************
-    */
 
-    // Initialize variables
+    /**
+     * INITIALIZE PARAMETERS
+     */
     public WebDriver driver;
     public WebDriverWait wait;
     public Actions actions;
 
-    /*
-     *********** DEFINE ACTIONS THAT TAKE PLACE BEFORE TESTING ***********
-    */
+
+    /**
+     * DEFINE ACTIONS THAT TAKE PLACE BEFORE TESTING
+     * @throws Throwable
+     */
     @BeforeEach
     public void setup() throws Throwable {
         LOGGER.info("******************************* SETUP *******************************");
@@ -42,9 +43,11 @@ public class _00_AbstractTest extends Logging implements IConstantes {
 
     }
 
-    /*
-     *********** DEFINE ACTIONS THAT TAKE PLACE AFTER TESTING ***********
-    */
+
+    /**
+     * DEFINE ACTIONS THAT TAKE PLACE AFTER TESTING
+     * @throws Exception
+     */
     @AfterEach
     public void teardown() throws Exception {
 

@@ -14,7 +14,11 @@ import static com.addev.hrportal.pageobjects.IConstantes.*;
 
 public class DatabaseSQL extends Logging {
 
-    // Method to connect to the database
+
+    /**
+     * METHOD TO CONNECT TO THE DATABSE
+     * @return
+     */
     private static Connection connectToDatabase() {
         Connection connection = null;
         try {
@@ -28,7 +32,11 @@ public class DatabaseSQL extends Logging {
     }
 
 
-    // Method to retrieve random values of the portal tools along with the corresponding email
+    /**
+     * METHOD TO RETRIEVE RANDOM VALUES OF THE PORTAL TOOLS ALONG WITH THE CORRESPONDING EMAIL
+     * @param pays takes the name of the country for which we wish to retrieve the available tools
+     * @return
+     */
     public static Map<String, String> getPortalToolsMap(String pays) {
 
         // Create a Map to store the column values
@@ -95,7 +103,11 @@ public class DatabaseSQL extends Logging {
     }
 
 
-    // Method to retrieve the email trace that allows to verify the email address of the corresponding tool
+    /**
+     * METHOD TO RETRIEVE THE EMAIL TRACE THAT ALLOWS VERIFYING THE EMAIL ADDRESS OF THE CORRESPONDING TOOL
+     * @param name takes the name of the registered person
+     * @return
+     */
     public static Map<String, String> getEmailTrace(String name) {
 
         // Create a Map to to stock email trace

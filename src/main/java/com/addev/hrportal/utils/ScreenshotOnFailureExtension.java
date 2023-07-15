@@ -13,6 +13,13 @@ import static com.addev.hrportal.pageobjects.AbstractPage.driver;
 import static com.addev.hrportal.utils.Logging.className;
 
 public class ScreenshotOnFailureExtension implements TestExecutionExceptionHandler {
+
+    /**
+     * TAKE SCREENSHOT OF BROWSER WHEN ASSERTION FAILS
+     * @param context
+     * @param throwable
+     * @throws Throwable
+     */
     @Override
     public void handleTestExecutionException(ExtensionContext context, Throwable throwable) throws Throwable {
         if (throwable instanceof AssertionError) {
@@ -22,7 +29,11 @@ public class ScreenshotOnFailureExtension implements TestExecutionExceptionHandl
         throw throwable;
     }
 
-    // take screenshot of webpage and stock it in folder
+
+    /**
+     * METHOD TO TAKE SCREENSHOT OF WEBPAGE AND STOCK IT IN A FOLDER
+     * @throws Exception
+     */
     public static void takeScreenshot() throws Exception {
         TakesScreenshot screenshotDriver = (TakesScreenshot) driver;
         //Call getScreenshotAs method to create image file
