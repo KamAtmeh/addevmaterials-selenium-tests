@@ -1,19 +1,22 @@
-package autom;
+package com.addev.hrportal.test;
 
+import com.addev.hrportal.utils.ScreenshotOnFailureExtension;
 import org.junit.jupiter.api.Test;
-import portalHR.AccueilPage;
-import portalHR.JobsPage;
+import com.addev.hrportal.pageobjects.AccueilPage;
+import com.addev.hrportal.pageobjects.JobsPage;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static utils.Toolbox.*;
+import static com.addev.hrportal.utils.Toolbox.*;
 
+@ExtendWith(ScreenshotOnFailureExtension.class)
 public class _02_A_SaisieSimpleTest extends _00_AbstractTest {
 
 	/*
      *********** TEST STARTS HERE ***********
      */
 	@Test
-    public void _02_A_navigationClassiqueTest() throws Throwable {
+    public void _02_A_SaisieSimpleTest() throws Throwable {
 
 		String titreDeLaPage = "Portail - RH";
 		String titreJobOpening = "New job opening";

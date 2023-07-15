@@ -1,4 +1,4 @@
-package portalHR;
+package com.addev.hrportal.pageobjects;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

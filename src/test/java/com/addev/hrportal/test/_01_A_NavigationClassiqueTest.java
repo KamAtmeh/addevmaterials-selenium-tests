@@ -1,13 +1,16 @@
-package autom;
+package com.addev.hrportal.test;
 
+import com.addev.hrportal.utils.ScreenshotOnFailureExtension;
 import org.junit.jupiter.api.Test;
-import portalHR.AccueilPage;
-import portalHR.IntegrationPage;
+import com.addev.hrportal.pageobjects.AccueilPage;
+import com.addev.hrportal.pageobjects.IntegrationPage;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static utils.Toolbox.clickElement;
+import static com.addev.hrportal.utils.Toolbox.clickElement;
 
+@ExtendWith(ScreenshotOnFailureExtension.class)
 public class _01_A_NavigationClassiqueTest extends _00_AbstractTest {
 
 	/*

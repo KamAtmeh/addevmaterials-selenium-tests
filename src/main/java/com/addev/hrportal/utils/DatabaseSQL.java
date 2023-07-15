@@ -1,4 +1,4 @@
-package utils;
+package com.addev.hrportal.utils;
 
 import java.sql.*;
 import java.util.*;
@@ -8,7 +8,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-import static portalHR.IConstantes.*;
+import static com.addev.hrportal.pageobjects.IConstantes.*;
 
 /* Class for defining tools related to the database and that can be used in any project */
 

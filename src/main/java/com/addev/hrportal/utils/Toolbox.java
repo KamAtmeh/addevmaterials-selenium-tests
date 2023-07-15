@@ -1,4 +1,4 @@
-package utils;
+package com.addev.hrportal.utils;
 
 
 import org.apache.commons.io.FileUtils;
@@ -9,7 +9,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import portalHR.JobsPage;
 
 import java.io.*;
 import java.time.Duration;
@@ -19,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import static portalHR.AbstractPage.driver;
+import static com.addev.hrportal.pageobjects.AbstractPage.driver;
 
 /* Class for defining tools that can be used in any project
 such as clear field, input value and click button

@@ -1,15 +1,15 @@
-package autom;
+package com.addev.hrportal.test;
 
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import portalHR.IConstantes;
-import portalHR.ConnexionPage;
-import utils.Logging;
+import com.addev.hrportal.pageobjects.IConstantes;
+import com.addev.hrportal.pageobjects.ConnexionPage;
+import com.addev.hrportal.utils.Logging;
 
-import static utils.Toolbox.*;
+import static com.addev.hrportal.utils.Toolbox.*;
 
 public class _00_AbstractTest extends Logging implements IConstantes {
 
