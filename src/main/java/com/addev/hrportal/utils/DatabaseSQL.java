@@ -10,8 +10,9 @@ import org.jsoup.select.Elements;
 
 import static com.addev.hrportal.pageobjects.IConstantes.*;
 
-/* Class for defining tools related to the database and that can be used in any project */
-
+/**
+ * Class for defining tools related to the database and that can be used in any project
+ */
 public class DatabaseSQL extends Logging {
 
 
