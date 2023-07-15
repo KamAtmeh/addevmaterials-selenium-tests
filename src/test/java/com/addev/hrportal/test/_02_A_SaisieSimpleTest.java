@@ -22,14 +22,14 @@ public class _02_A_SaisieSimpleTest extends _00_AbstractTest {
 		String titreJobOpening = "New job opening";
 
 		LOGGER.info("******************************* DEBUT DU TEST *******************************");
-		LOGGER.info("Initiate homepage");
+		LOGGER.info("Initialize homepage");
 		AccueilPage Accueil = new AccueilPage(driver);
 		LOGGER.info("Verify title page");
 		assertTrue(Accueil.titrePageAccueil.isDisplayed(), "[KO] Page title is not displayed");
 		assertEquals(titreDeLaPage, Accueil.titrePageAccueil.getText(),"[KO] Page title is not as expected");
 		LOGGER.info("Click on JOBS");
 		clickElement(wait, Accueil.buttonJOBSv2);
-		LOGGER.info("Initiate new job opening page");
+		LOGGER.info("Initialize new job opening page");
 		JobsPage Jobs = new JobsPage(driver);
 		LOGGER.info("Verify title plage");
 		assertTrue(Jobs.titreNewJobOpening.isDisplayed(), "[KO] Page title is not displayed");

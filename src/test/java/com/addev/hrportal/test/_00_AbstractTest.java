@@ -17,7 +17,7 @@ public class _00_AbstractTest extends Logging implements IConstantes {
     ********* INITIALIZE PARAMETERS ************
     */
 
-    // Initiate variables
+    // Initialize variables
     public WebDriver driver;
     public WebDriverWait wait;
     public Actions actions;
