@@ -27,7 +27,12 @@ such as clear field, input value and click button
 
 public class Toolbox extends Logging {
 
-    // Method to initiate properties
+
+    /**
+     * METHOD TO INITIALIZE PROPERTIES
+     * @param fichierProperties takes the path of the properties file to load
+     * @return
+     */
     public static Properties initProp(String fichierProperties) {
         Properties prop = new Properties();
 
@@ -41,9 +46,19 @@ public class Toolbox extends Logging {
 
         return prop;
     }
-    
 
-    // Method to open browser
+
+    /**
+     * METHOD TO OPEN BROWSER
+     * @param browser takes the name of the browser to run
+     * @param maximizeDriver takes a boolean value that determines whether to maximize the window or not
+     * @param implicitWaitingTime takes an implicit waiting time as an integer (in seconds)
+     * @param windowPosition defines the window position when opening the browser
+     * @param windowSize defines the size of the window when opening the browser
+     * @param headless takes a boolean value that determines whether to run browser in headless mode or not
+     * @param url takes the url of the website to open
+     * @return
+     */
     public static WebDriver openBrowser(String browser, Boolean maximizeDriver, Integer implicitWaitingTime, String windowPosition, String windowSize, Boolean headless, String url) {
 
         WebDriver driver = null;
@@ -84,7 +99,16 @@ public class Toolbox extends Logging {
     }
 
 
-    // Method to connect to website
+    /**
+     * METHOD TO CONNECT TO WEBSITE
+     * @param wait takes an explicit wait
+     * @param usernameField takes the input element of the username
+     * @param username takes the username
+     * @param passwordField takes the input element of the password
+     * @param password takes the password
+     * @param connectButton takes the login button to click on
+     * @throws Throwable
+     */
     public static void connectPortal(WebDriverWait wait, WebElement usernameField, String username, WebElement passwordField, String password, WebElement connectButton) throws Throwable {
         // clear username field and input username
         setValue(wait, usernameField, username);
@@ -97,7 +121,12 @@ public class Toolbox extends Logging {
     }
 
 
-    // Method to click on element after waiting
+    /**
+     * METHOD TO CLICK ON ELEMENT AFTER WAITING
+     * @param wait takes an explicit wait
+     * @param element takes the element to click on
+     * @throws Throwable
+     */
     public static void clickElement(WebDriverWait wait, WebElement element) throws Throwable {
         boolean stale = true;
         while (stale){
@@ -120,7 +149,13 @@ public class Toolbox extends Logging {
     }
 
 
-    // Method to fill fields with text after clearing them
+    /**
+     * METHOD TO FILL FIELDS WITH TEXT AFTER CLEARING THEM
+     * @param wait takes an explicit wait
+     * @param element takes the input element
+     * @param string takes the string to input in the element
+     * @throws Throwable
+     */
     public static void setValue(WebDriverWait wait, WebElement element, String string) throws Throwable {
         // Click on element
         clickElement(wait, element);
@@ -133,14 +168,20 @@ public class Toolbox extends Logging {
     }
 
 
-    // Method to select value in dropdown menu
-    public static void selectValueMenu(WebDriverWait wait, WebElement element, String... valeurs) throws Throwable {
+    /**
+     * METHOD TO SELECT VALUE IN DROPDOWN MENU
+     * @param wait takes an explicit wait
+     * @param element takes the dropdown menu
+     * @param values takes the value of the element to select in the dropdown menu
+     * @throws Throwable
+     */
+    public static void selectValueMenu(WebDriverWait wait, WebElement element, String... values) throws Throwable {
 
         // click on element first
         clickElement(wait, element);
 
         // define xpath using value to choose
-        String xpathValeur = "//div[@class=\"v-list-item-title\" and contains(text(), \"" + valeurs[0] + "\")]";
+        String xpathValeur = "//div[@class=\"v-list-item-title\" and contains(text(), \"" + values[0] + "\")]";
 
         try {
             // Récupérer l'élément à sélectionner dans le menu déroulant
@@ -153,7 +194,13 @@ public class Toolbox extends Logging {
     }
 
 
-    // Method to select radio button
+    /**
+     * METHOD TO SELECT RADIO BUTTON
+     * @param wait takes an explicit wait
+     * @param radioElements takes the list of connected radio webelements
+     * @param choice takes the label of the chosen radio button within the provided list
+     * @throws Throwable
+     */
     public static void selectRadioButton(WebDriverWait wait, List<WebElement> radioElements, String choice) throws Throwable {
         if(!choice.equals("null")){
             // Iterate through the list of radio button elements
@@ -172,12 +219,19 @@ public class Toolbox extends Logging {
     }
 
 
-    // Method to generate a random alphanumeric number
+    /**
+     * METHOD TO GENERATE A RANDOM STRING
+     * @return an alphanumeric string if no argument is provided
+     */
     public static String generateRandomString() {
         // Call the version with default value
         return generateRandomString(true);
     }
 
+    /**
+     * @param alphanumeric takes a boolean value and defines whether we want an alphanumeric number or not
+     * @return
+     */
     public static String generateRandomString(boolean alphanumeric) {
         int length = 6; // Desired length of the alphanumeric number
 
@@ -211,8 +265,8 @@ public class Toolbox extends Logging {
 
     /**
      * METHOD TO SELECT PORTAL TOOLS
-     * @param wait provides an explicit wait
-     * @param toolsMap provides a hashed map of the tools to choose
+     * @param wait takes an explicit wait
+     * @param toolsMap takes a hashed map of the tools to choose
      * @throws Throwable
      */
     public static void selectPortalTools(WebDriverWait wait, Map<String, String> toolsMap) throws Throwable {
@@ -231,7 +285,10 @@ public class Toolbox extends Logging {
         }
     }
 
-    // Method to close the sql popup after Save & Continue
+
+    /**
+     * METHOD TO CLOSE THE SQL POPUP AFTER CLICKING SAVE & CONTINUE
+     */
     public static void closeDialog(){
         boolean popupPresent = true;
         while (popupPresent){
@@ -246,7 +303,12 @@ public class Toolbox extends Logging {
         }
     }
 
-    // Method to take screenshot of webpage and stock it in folder
+
+    /**
+     * METHOD TO TAKE SCREENSHOT OF WEBPAGE AND STOCK IT IN A FOLDER
+     * @return the canonical path of the screenshot
+     * @throws Exception
+     */
     public static String takeSnapShot() throws Exception{
         //Convert web driver object to TakeScreenshot
         TakesScreenshot scrShot =((TakesScreenshot)driver);
