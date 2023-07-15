@@ -17,6 +17,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Random;
 
 import static com.addev.hrportal.pageobjects.AbstractPage.driver;
 
@@ -26,7 +27,7 @@ such as clear field, input value and click button
 
 public class Toolbox extends Logging {
 
-    // function to initiate properties
+    // Method to initiate properties
     public static Properties initProp(String fichierProperties) {
         Properties prop = new Properties();
 
@@ -42,7 +43,7 @@ public class Toolbox extends Logging {
     }
     
 
-    // function to open browser
+    // Method to open browser
     public static WebDriver openBrowser(String browser, Boolean maximizeDriver, Integer implicitWaitingTime, String windowPosition, String windowSize, Boolean headless, String url) {
 
         WebDriver driver = null;
@@ -82,7 +83,8 @@ public class Toolbox extends Logging {
         return driver;
     }
 
-    // function to connect to website
+
+    // Method to connect to website
     public static void connectPortal(WebDriverWait wait, WebElement usernameField, String username, WebElement passwordField, String password, WebElement connectButton) throws Throwable {
         // clear username field and input username
         setValue(wait, usernameField, username);
@@ -94,7 +96,8 @@ public class Toolbox extends Logging {
         clickElement(wait, connectButton);
     }
 
-    // function to click on element after waiting
+
+    // Method to click on element after waiting
     public static void clickElement(WebDriverWait wait, WebElement element) throws Throwable {
         boolean stale = true;
         while (stale){
@@ -116,7 +119,8 @@ public class Toolbox extends Logging {
         }
     }
 
-    // function to fill fields with text after clearing them
+
+    // Method to fill fields with text after clearing them
     public static void setValue(WebDriverWait wait, WebElement element, String string) throws Throwable {
         // Click on element
         clickElement(wait, element);
@@ -129,8 +133,7 @@ public class Toolbox extends Logging {
     }
 
 
-    // function to select value in dropdown menu
-    // function to select a value from a field menu
+    // Method to select value in dropdown menu
     public static void selectValueMenu(WebDriverWait wait, WebElement element, String... valeurs) throws Throwable {
 
         // click on element first
@@ -149,7 +152,8 @@ public class Toolbox extends Logging {
         }
     }
 
-    // function to select radio button
+
+    // Method to select radio button
     public static void selectRadioButton(WebDriverWait wait, List<WebElement> radioElements, String choice) throws Throwable {
         if(!choice.equals("null")){
             // Iterate through the list of radio button elements
@@ -167,6 +171,50 @@ public class Toolbox extends Logging {
         }
     }
 
+
+    // Method to generate a random alphanumeric number
+    public static String generateRandomString() {
+        // Call the version with default value
+        return generateRandomString(true);
+    }
+
+    public static String generateRandomString(boolean alphanumeric) {
+        int length = 6; // Desired length of the alphanumeric number
+
+        String characters = null;
+
+        // Define the characters allowed in the alphanumeric number based on the alphanumeric parameter
+        if (alphanumeric) {
+            characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        } else {
+            characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        }
+
+        // Create a Random object
+        Random random = new Random();
+
+        // Create a StringBuilder to store the generated alphanumeric number
+        StringBuilder sb = new StringBuilder(length);
+
+        // Generate the alphanumeric number
+        for (int i = 0; i < length; i++) {
+            // Generate a random index from the allowed characters string
+            int randomIndex = random.nextInt(characters.length());
+
+            // Get the character at the random index and append it to the StringBuilder
+            sb.append(characters.charAt(randomIndex));
+        }
+
+        return sb.toString();
+    }
+
+
+    /**
+     * METHOD TO SELECT PORTAL TOOLS
+     * @param wait provides an explicit wait
+     * @param toolsMap provides a hashed map of the tools to choose
+     * @throws Throwable
+     */
     public static void selectPortalTools(WebDriverWait wait, Map<String, String> toolsMap) throws Throwable {
 
         String xpath = null;
@@ -198,8 +246,8 @@ public class Toolbox extends Logging {
         }
     }
 
-    // take screenshot of webpage and stock it in folder
-    public static String takeSnapShot(WebDriver driver) throws Exception{
+    // Method to take screenshot of webpage and stock it in folder
+    public static String takeSnapShot() throws Exception{
         //Convert web driver object to TakeScreenshot
         TakesScreenshot scrShot =((TakesScreenshot)driver);
         //Call getScreenshotAs method to create image file

@@ -20,6 +20,8 @@ public class _02_A_SaisieSimpleTest extends _00_AbstractTest {
 
 		String titreDeLaPage = "Portail - RH";
 		String titreJobOpening = "New job opening";
+		String jobNumber = generateRandomString();
+		String name = generateRandomString(false);
 
 		LOGGER.info("******************************* DEBUT DU TEST *******************************");
 		LOGGER.info("Initialize homepage");
@@ -35,7 +37,7 @@ public class _02_A_SaisieSimpleTest extends _00_AbstractTest {
 		assertTrue(Jobs.titreNewJobOpening.isDisplayed(), "[KO] Page title is not displayed");
 		assertEquals(titreJobOpening, Jobs.titreNewJobOpening.getText(), "[KO] Jobs page title is not as expected");
 		LOGGER.info("Input Job Number");
-		setValue(wait, Jobs.inputJobNumber, "001");
+		setValue(wait, Jobs.inputJobNumber, jobNumber);
 		LOGGER.info("Input Job Title");
 		setValue(wait, Jobs.inputJobTitle, "QA Engineer");
 		LOGGER.info("Select Manager");
@@ -51,14 +53,14 @@ public class _02_A_SaisieSimpleTest extends _00_AbstractTest {
 		LOGGER.info("Click on Continue");
 		clickElement(wait, Jobs.buttonContinue);
 		LOGGER.info("Input First Name");
-		setValue(wait, Jobs.inputFirstName, "Test1");
+		setValue(wait, Jobs.inputFirstName, name);
 		LOGGER.info("Input Surname");
-		setValue(wait, Jobs.inputLastName, "Test1");
+		setValue(wait, Jobs.inputLastName, name);
 		LOGGER.info("Input Other information");
 		setValue(wait, Jobs.inputOtherInformation, "This is a test");
 		LOGGER.info("Click on Save & Exit");
 		clickElement(wait, Jobs.buttonSaveExit);
 		LOGGER.info("[OK] Submission completed");
+
     }
-	
 }

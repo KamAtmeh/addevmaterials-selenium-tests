@@ -24,6 +24,7 @@ public class _03_A_SaisieComplexeTest extends _00_AbstractTest {
 
 		String titreDeLaPage = "Portail - RH";
 		String titreJobOpening = "New job opening";
+		String name = generateRandomString(false);
 
 		LOGGER.info("******************************* DEBUT DU TEST *******************************");
 		LOGGER.info("Initialize homepage");
@@ -59,7 +60,6 @@ public class _03_A_SaisieComplexeTest extends _00_AbstractTest {
 		LOGGER.info("Click on Continue");
 		clickElement(wait, Jobs.buttonContinue);
 		LOGGER.info("Input First Name");
-		String name = "Test 28";
 		setValue(wait, Jobs.inputFirstName, name);
 		LOGGER.info("Input Last Name");
 		setValue(wait, Jobs.inputLastName, name);
@@ -74,5 +74,6 @@ public class _03_A_SaisieComplexeTest extends _00_AbstractTest {
 		LOGGER.info("Verify that emails have been sent to the correct address and that the email contains the chosen tool");
 		assertEquals(portalToolsMap, getEmailTrace(name), "[KO] Emails and tools are not correct");
 		LOGGER.info("[OK] Submission completed");
+
     }
 }

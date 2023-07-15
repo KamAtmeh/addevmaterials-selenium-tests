@@ -58,5 +58,6 @@ public class _01_A_NavigationClassiqueTest extends _00_AbstractTest {
 		LOGGER.info("Verify that title is correct");
 		assertEquals(titreDeLaPageAccueil, Accueil.titrePageAccueil.getText(),"[KO] Le titre de la page n'est pas celui attendu");
 		LOGGER.info("[OK] Verification complete. Navigation is correct.");
+
     }
 }
