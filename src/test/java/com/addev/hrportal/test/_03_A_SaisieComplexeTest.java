@@ -59,7 +59,7 @@ public class _03_A_SaisieComplexeTest extends _00_AbstractTest {
 		LOGGER.info("Click on Continue");
 		clickElement(wait, Jobs.buttonContinue);
 		LOGGER.info("Input First Name");
-		String name = "Test 27";
+		String name = "Test 28";
 		setValue(wait, Jobs.inputFirstName, name);
 		LOGGER.info("Input Last Name");
 		setValue(wait, Jobs.inputLastName, name);
