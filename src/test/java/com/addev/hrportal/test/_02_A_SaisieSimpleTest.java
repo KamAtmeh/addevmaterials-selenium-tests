@@ -19,7 +19,7 @@ public class _02_A_SaisieSimpleTest extends _00_AbstractTest {
 	@Test
     public void _02_A_SaisieSimpleTest() throws Throwable {
 
-		String titreDeLaPage = "Portail - RH";
+		String titreDeLaPageAccueil = "Portail - RH";
 		String titreJobOpening = "New job opening";
 		String jobNumber = generateRandomString();
 		String name = generateRandomString(false);
@@ -27,15 +27,17 @@ public class _02_A_SaisieSimpleTest extends _00_AbstractTest {
 		LOGGER.info("******************************* DEBUT DU TEST *******************************");
 		LOGGER.info("Initialize homepage");
 		AccueilPage Accueil = new AccueilPage(driver);
-		LOGGER.info("Verify title page");
+		LOGGER.info("Verify that title is displayed");
 		assertTrue(Accueil.titrePageAccueil.isDisplayed(), "[KO] Page title is not displayed");
-		assertEquals(titreDeLaPage, Accueil.titrePageAccueil.getText(),"[KO] Page title is not as expected");
+		LOGGER.info("Verify that title page is \"{}\"", titreDeLaPageAccueil);
+		assertEquals(titreDeLaPageAccueil, Accueil.titrePageAccueil.getText(),"[KO] Page title is not as expected");
 		LOGGER.info("Click on JOBS");
 		clickElement(wait, Accueil.buttonJOBSv2);
 		LOGGER.info("Initialize new job opening page");
 		JobsPage Jobs = new JobsPage(driver);
-		LOGGER.info("Verify title plage");
+		LOGGER.info("Verify that title is displayed");
 		assertTrue(Jobs.titreNewJobOpening.isDisplayed(), "[KO] Page title is not displayed");
+		LOGGER.info("Verify that title page is \"{}\"", titreJobOpening);
 		assertEquals(titreJobOpening, Jobs.titreNewJobOpening.getText(), "[KO] Jobs page title is not as expected");
 		LOGGER.info("Input Job Number");
 		setValue(wait, Jobs.inputJobNumber, jobNumber);
