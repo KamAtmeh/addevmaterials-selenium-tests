@@ -55,9 +55,9 @@ public class _01_A_NavigationClassiqueTest extends _00_AbstractTest {
 		LOGGER.info("Click on Home icon");
 		clickElement(wait, Accueil.buttonRetourAccueil);
 		LOGGER.info("Verify that title is displayed");
-		assertTrue(Accueil.titrePageAccueil.isDisplayed(), "[KO] Le titre de la page n'est pas affiché");
+		assertTrue(Accueil.titrePageAccueil.isDisplayed(), "[KO] The title of the page is not displayed");
 		LOGGER.info("Verify that title is correct");
-		assertEquals(titreDeLaPageAccueil, Accueil.titrePageAccueil.getText(),"[KO] Le titre de la page n'est pas celui attendu");
+		assertEquals(titreDeLaPageAccueil, Accueil.titrePageAccueil.getText(),"[KO] The title of the page is not as expected");
 		LOGGER.info("[OK] Verification complete. Navigation is correct.");
 
     }

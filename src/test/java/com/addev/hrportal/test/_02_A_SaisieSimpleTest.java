@@ -46,9 +46,9 @@ public class _02_A_SaisieSimpleTest extends _00_AbstractTest {
 		LOGGER.info("Select Business Group");
 		selectRadioButton(wait, Jobs.radioBusinessGroup, "A&D");
 		LOGGER.info("Select Localisation");
-		selectValueMenu(wait, Jobs.inputLocalisation, "San Diego (addev vms)");
+		selectValueMenu(wait, Jobs.inputLocalisation, "Lyon (addev materials siege social)");
 		LOGGER.info("Select Company");
-		selectValueMenu(wait, Jobs.inputCompany, "ICTDP");
+		selectValueMenu(wait, Jobs.inputCompany, "ADDEV MATERIALS SIEGE SOCIAL");
 		LOGGER.info("Select Pays");
 		selectValueMenu(wait, Jobs.inputPays, "Poland");
 		LOGGER.info("Click on Continue");

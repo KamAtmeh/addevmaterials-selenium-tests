@@ -76,10 +76,10 @@ public class DatabaseSQL extends Logging {
             // Process the result set
             while (resultSet.next()) {
                 // Retrieve values from the two columns
-                String column1Value = resultSet.getString("name").replace("x3 licence", "licence x3");
-                String column2Value = resultSet.getString("email");
+                String tool = resultSet.getString("name").replace("x3 licence", "licence x3");
+                String email = resultSet.getString("email");
                 // Map the column values
-                columnMap.put(column1Value, column2Value);
+                columnMap.put(tool, email);
             }
 
         } catch (SQLException e) {
@@ -124,7 +124,6 @@ public class DatabaseSQL extends Logging {
             statement = connection.createStatement();
             // Execute query
             resultSet = statement.executeQuery("SELECT meta,trace FROM es.ra_log WHERE meta LIKE '%" + name + "%' AND meta LIKE '%Test for%' ORDER BY meta;");
-
 
             // Set pattern for email retrieval
             Pattern pattern = Pattern.compile("for\\s+(.*?)\\s+<c");
