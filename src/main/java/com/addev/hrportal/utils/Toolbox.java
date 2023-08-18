@@ -65,6 +65,7 @@ public class Toolbox extends Logging {
         switch (browser.toLowerCase()) {
             case "firefox" :
                 System.setProperty("webdriver.gecko.driver", "src/main/resources/drivers/geckodriver.exe");
+                System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE,"/dev/null");
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 firefoxOptions.addArguments(windowPosition); // opens browser on second monitor if possible
                 firefoxOptions.addArguments(windowSize); // opens browser with specific dimensions
