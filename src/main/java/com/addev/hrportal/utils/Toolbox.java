@@ -20,6 +20,7 @@ import java.util.Properties;
 import java.util.Random;
 
 import static com.addev.hrportal.pageobjects.AbstractPage.driver;
+import static com.addev.hrportal.pageobjects.IConstantes.NAVIGATEUR;
 
 /**
  * Class for defining tools that can be used in any project such as clear field, input value and click button
@@ -142,7 +143,7 @@ public class Toolbox extends Logging {
             } catch (ElementClickInterceptedException ex2) {
                 // Use JavaScript to click on elements if hidden behind other elements
                 ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
-                element.findElement(By.xpath("ancestor::div[@class=\"v-field__field\"]/following-sibling::div/i")).click();
+                if(NAVIGATEUR.toLowerCase() != "firefox") { element.findElement(By.xpath("ancestor::div[@class=\"v-field__field\"]/following-sibling::div/i")).click(); }
                 stale = false;
             }
         }
