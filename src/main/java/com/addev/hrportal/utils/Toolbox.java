@@ -143,7 +143,7 @@ public class Toolbox extends Logging {
             } catch (ElementClickInterceptedException ex2) {
                 // Use JavaScript to click on elements if hidden behind other elements
                 ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
-                if(NAVIGATEUR.toLowerCase() != "firefox") { element.findElement(By.xpath("ancestor::div[@class=\"v-field__field\"]/following-sibling::div/i")).click(); }
+                if(!NAVIGATEUR.equalsIgnoreCase("firefox")) { element.findElement(By.xpath("ancestor::div[@class=\"v-field__field\"]/following-sibling::div/i")).click(); }
                 stale = false;
             }
         }
