@@ -132,19 +132,22 @@ public class Toolbox extends Logging {
         boolean stale = true;
         while (stale){
             try{
-                // Wait for the document to be ready
                 // We use this instead of visibility of element because the labels of inputs are positioned over the
                 // input, thus making the inputs not visible
-                wait.until(ExpectedConditions.jsReturnsValue("return document.readyState === 'complete'"));
                 element.click();
                 stale = false;
             } catch (StaleElementReferenceException ex) {
                 stale = true;
             } catch (ElementClickInterceptedException ex2) {
+                LOGGER.info("Stale");
                 // Use JavaScript to click on elements if hidden behind other elements
                 ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
-                if(!NAVIGATEUR.equalsIgnoreCase("firefox")) { element.findElement(By.xpath("ancestor::div[@class=\"v-field__field\"]/following-sibling::div/i")).click(); }
-                stale = false;
+                try {
+                    element.findElement(By.xpath("ancestor::div[@class=\"v-field__field\"]/following-sibling::div/i")).click();
+                    stale = false;
+                } catch (NoSuchElementException ex3) {
+                    stale = false;
+                }
             }
         }
     }
