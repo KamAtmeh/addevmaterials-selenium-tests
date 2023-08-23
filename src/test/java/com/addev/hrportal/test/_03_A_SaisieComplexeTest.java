@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static com.addev.hrportal.utils.DatabaseSQL.*;
 import static com.addev.hrportal.utils.Toolbox.*;
 
+
 @ExtendWith(ScreenshotOnFailureExtension.class)
 public class _03_A_SaisieComplexeTest extends _00_AbstractTest {
 
