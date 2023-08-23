@@ -18,7 +18,7 @@ public class _01_A_NavigationClassiqueTest extends _00_AbstractTest {
 	 * @throws Throwable
 	 */
 	@Test
-    public void _01_A_NavigationClassiqueTest() throws Throwable {
+    public void navigationClassiqueTest() throws Throwable {
 
 		String titreDeLaPageAccueil = "Portail - RH";
 		String IntegrationPageTitle = "HR Integration";

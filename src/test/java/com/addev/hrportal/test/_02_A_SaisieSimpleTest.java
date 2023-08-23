@@ -17,7 +17,7 @@ public class _02_A_SaisieSimpleTest extends _00_AbstractTest {
 	 * @throws Throwable
 	 */
 	@Test
-    public void _02_A_SaisieSimpleTest() throws Throwable {
+    public void saisieSimpleTest() throws Throwable {
 
 		String titreDeLaPageAccueil = "Portail - RH";
 		String titreJobOpening = "New job opening";

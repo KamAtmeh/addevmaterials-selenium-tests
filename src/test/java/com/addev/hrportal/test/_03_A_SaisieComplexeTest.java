@@ -22,7 +22,7 @@ public class _03_A_SaisieComplexeTest extends _00_AbstractTest {
 	 * @throws Throwable
 	 */
 	@Test
-    public void _03_A_SaisieComplexeTest() throws Throwable {
+    public void saisieComplexeTest() throws Throwable {
 
 		String titreDeLaPageAccueil = "Portail - RH";
 		String titreJobOpening = "New job opening";
