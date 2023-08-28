@@ -65,6 +65,10 @@ public class JobsPage extends AbstractPage{
 
 
     // ********** BUTTONS *********** //
+    // Job specifications button
+    @FindBy(xpath = "//a[normalize-space()=\"Job specifications\"]")
+    public WebElement buttonJobSpecifications;
+
     // Button Save and Exit
     @FindBy(xpath = "//button[normalize-space()='Save & Exit']")
     public WebElement buttonSaveExit;

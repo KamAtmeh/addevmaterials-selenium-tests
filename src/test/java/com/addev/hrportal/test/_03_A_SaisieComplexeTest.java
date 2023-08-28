@@ -69,6 +69,12 @@ public class _03_A_SaisieComplexeTest extends _00_AbstractTest {
 		setValue(wait, Jobs.inputLastName, name);
 		LOGGER.info("Input Other information");
 		setValue(wait, Jobs.inputOtherInformation, "This is a test");
+		LOGGER.info("Click on Job Specifications to go back to first page");
+		clickElement(wait, Jobs.buttonJobSpecifications);
+		LOGGER.info("Verify that title page is \"{}\"", titreJobOpening);
+		assertEquals(titreJobOpening, Jobs.titreNewJobOpening.getText(), "[KO] Jobs page title is not as expected");
+		LOGGER.info("Click on Continue");
+		clickElement(wait, Jobs.buttonContinue);
 		LOGGER.info("Click on Save & Exit");
 		clickElement(wait, Jobs.buttonSaveExit);
 		LOGGER.info("Click on Close Dialog button");
