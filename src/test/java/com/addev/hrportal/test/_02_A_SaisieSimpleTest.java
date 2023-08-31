@@ -6,6 +6,11 @@ import com.addev.hrportal.pageobjects.AccueilPage;
 import com.addev.hrportal.pageobjects.JobsPage;
 import org.junit.jupiter.api.extension.ExtendWith;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import static com.addev.hrportal.utils.DatabaseSQL.getEmailInfo;
+import static com.addev.hrportal.utils.DatabaseSQL.getEmailTools;
 import static org.junit.jupiter.api.Assertions.*;
 import static com.addev.hrportal.utils.Toolbox.*;
 
@@ -23,6 +28,12 @@ public class _02_A_SaisieSimpleTest extends _00_AbstractTest {
 		String titreJobOpening = "New job opening";
 		String jobNumber = generateRandomString();
 		String name = generateRandomString(false);
+		// Create a HashMap and add keys and values in one instance
+		Map<String, String> infoMap = new LinkedHashMap<String, String>() {{
+			put("Lastname", name);
+			put("Firstname", name);
+			put("Date", getCurrentDate());
+		}};
 
 		LOGGER.info("******************************* DEBUT DU TEST *******************************");
 		LOGGER.info("Initialize homepage");
@@ -63,6 +74,10 @@ public class _02_A_SaisieSimpleTest extends _00_AbstractTest {
 		setValue(wait, Jobs.inputOtherInformation, "This is a test");
 		LOGGER.info("Click on Save & Exit");
 		clickElement(wait, Jobs.buttonSaveExit);
+		LOGGER.info("Verify that email contains the correct information");
+		assertEquals(infoMap, getEmailInfo(name), "[KO] Information in email are not correct");
+		System.out.print(infoMap);
+		System.out.print(getEmailInfo(name));
 		LOGGER.info("[OK] Submission completed");
 
     }

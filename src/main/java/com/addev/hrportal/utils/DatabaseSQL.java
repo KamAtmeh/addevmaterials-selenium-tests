@@ -9,6 +9,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import static com.addev.hrportal.pageobjects.IConstantes.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Class for defining tools related to the database and that can be used in any project
@@ -105,11 +107,76 @@ public class DatabaseSQL extends Logging {
 
 
     /**
+     * METHOD TO RETRIEVE THE EMAIL TRACE THAT ALLOWS VERIFYING THE REGISTRATION INFORMATION
+     * @param name takes the name of the registered person
+     * @return
+     */
+    public static Map<String, String> getEmailInfo(String name) {
+
+        // Create a Map to to stock email trace
+        Map<String, String> responseMap = new LinkedHashMap<>();
+        ResultSet resultSet = null;
+        Statement statement = null;
+        Connection connection = null;
+
+        try {
+            // Connect to the databse
+            connection = connectToDatabase();
+            // Initialize statement
+            statement = connection.createStatement();
+            // Execute query
+            resultSet = statement.executeQuery("SELECT meta,trace FROM es.ra_log WHERE meta LIKE '%" + name + "%' AND meta LIKE '%\"to\":\"c.maroni@addevmaterials.com%' ORDER BY meta;");
+
+            // Process the result set
+            while (resultSet.next()) {
+
+                // Retrieve HTML trace
+                String htmlTable= resultSet.getString("trace");
+                // Parse String to HTML
+                Document doc = Jsoup.parse(htmlTable);
+                // Get nodes
+                Elements nomNode = doc.selectXpath("//p[contains(text(), 'Lastname')]/../following-sibling::td/p");
+                Elements prenomNode = doc.selectXpath("//p[contains(text(), 'Firstname')]/../following-sibling::td/p");
+                Elements dateNode = doc.selectXpath("//p[contains(text(), 'Date')]/../following-sibling::td/p");
+                Elements trigrammeNode = doc.selectXpath("//p[contains(text(), 'Trigramme')]/../following-sibling::td/p");
+                // Set hashmap keys
+                String[] keys = {"Lastname", "Firstname", "Date"};
+                // Retrieve the text of the selected node(s) and add them as hashmap values
+                String[] values = {nomNode.first().text(), prenomNode.first().text(), dateNode.first().text()};
+                for (int i = 0; i < keys.length; i++) {
+                    responseMap.put(keys[i], values[i]);
+                }
+                assertFalse(trigrammeNode.isEmpty(), "[KO] Trigramme is not provided in email");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Close the result set, statement, and connection in the finally block
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (statement != null) {
+                    statement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return responseMap;
+        }
+    }
+
+
+    /**
      * METHOD TO RETRIEVE THE EMAIL TRACE THAT ALLOWS VERIFYING THE EMAIL ADDRESS OF THE CORRESPONDING TOOL
      * @param name takes the name of the registered person
      * @return
      */
-    public static Map<String, String> getEmailTrace(String name) {
+    public static Map<String, String> getEmailTools(String name) {
 
         // Create a Map to to stock email trace
         Map<String, String> responseMap = new LinkedHashMap<>();

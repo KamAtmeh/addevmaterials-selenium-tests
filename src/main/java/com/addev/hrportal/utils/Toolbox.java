@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.*;
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -305,6 +306,22 @@ public class Toolbox extends Logging {
                 popupPresent = false;
             }
         }
+    }
+
+
+    /***
+     *
+     * @return the formatted date
+     */
+    public static String getCurrentDate() {
+        // Define the desired date format
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        // Get the current date
+        LocalDate currentDate = LocalDate.now();
+
+        // Return the formatted date
+        return currentDate.format(formatter);
     }
 
 

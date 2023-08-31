@@ -82,7 +82,7 @@ public class _03_A_SaisieComplexeTest extends _00_AbstractTest {
 		LOGGER.info("Verify that user is back on home page");
 		assertTrue(Accueil.titrePageAccueil.isDisplayed(), "[KO] User is not back on homepage");
 		LOGGER.info("Verify that emails have been sent to the correct address and that the email contains the chosen tool");
-		assertEquals(portalToolsMap, getEmailTrace(name), "[KO] Emails and tools are not correct");
+		assertEquals(portalToolsMap, getEmailTools(name), "[KO] Emails and tools are not correct");
 		LOGGER.info("[OK] Submission completed");
 
     }
