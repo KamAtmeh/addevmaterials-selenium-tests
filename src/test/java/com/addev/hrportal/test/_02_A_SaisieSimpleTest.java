@@ -74,8 +74,12 @@ public class _02_A_SaisieSimpleTest extends _00_AbstractTest {
 		setValue(wait, Jobs.inputOtherInformation, "This is a test");
 		LOGGER.info("Click on Save & Exit");
 		clickElement(wait, Jobs.buttonSaveExit);
+		LOGGER.info("Verify that trigramme is provided in email");
+		Map<String, String> emailInfo = getEmailInfo(name);
+		assertFalse(emailInfo.get("Trigramme").isEmpty(), "[KO] Trigramme is not provided in email");
 		LOGGER.info("Verify that email contains the correct information");
-		assertEquals(infoMap, getEmailInfo(name), "[KO] Information in email are not correct");
+		emailInfo.remove("Trigramme");
+		assertEquals(infoMap, emailInfo, "[KO] Information in email are not correct");
 		System.out.print(infoMap);
 		System.out.print(getEmailInfo(name));
 		LOGGER.info("[OK] Submission completed");

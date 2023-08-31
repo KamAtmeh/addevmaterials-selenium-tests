@@ -140,15 +140,13 @@ public class DatabaseSQL extends Logging {
                 Elements dateNode = doc.selectXpath("//p[contains(text(), 'Date')]/../following-sibling::td/p");
                 Elements trigrammeNode = doc.selectXpath("//p[contains(text(), 'Trigramme')]/../following-sibling::td/p");
                 // Set hashmap keys
-                String[] keys = {"Lastname", "Firstname", "Date"};
+                String[] keys = {"Lastname", "Firstname", "Date", "Trigramme"};
                 // Retrieve the text of the selected node(s) and add them as hashmap values
-                String[] values = {nomNode.first().text(), prenomNode.first().text(), dateNode.first().text()};
+                String[] values = {nomNode.first().text(), prenomNode.first().text(), dateNode.first().text(), trigrammeNode.text()};
                 for (int i = 0; i < keys.length; i++) {
                     responseMap.put(keys[i], values[i]);
                 }
-                assertFalse(trigrammeNode.isEmpty(), "[KO] Trigramme is not provided in email");
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -166,8 +164,8 @@ public class DatabaseSQL extends Logging {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            return responseMap;
         }
+        return responseMap;
     }
 
 
@@ -236,7 +234,7 @@ public class DatabaseSQL extends Logging {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            return responseMap;
         }
+        return responseMap;
     }
 }
