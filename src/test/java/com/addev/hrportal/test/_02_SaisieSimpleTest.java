@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static com.addev.hrportal.utils.Toolbox.*;
 
 @ExtendWith(ScreenshotOnFailureExtension.class)
-public class _02_A_SaisieSimpleTest extends _00_AbstractTest {
+public class _02_SaisieSimpleTest extends _00_AbstractTest {
 
 	/**
 	 * TEST STARTS HERE

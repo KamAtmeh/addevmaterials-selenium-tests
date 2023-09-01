@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static com.addev.hrportal.utils.Toolbox.clickElement;
 
 @ExtendWith(ScreenshotOnFailureExtension.class)
-public class _01_A_NavigationClassiqueTest extends _00_AbstractTest {
+public class _01_NavigationClassiqueTest extends _00_AbstractTest {
 
 	/**
 	 * TEST STARTS HERE

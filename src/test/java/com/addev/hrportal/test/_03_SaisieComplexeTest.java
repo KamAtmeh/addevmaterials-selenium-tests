@@ -16,7 +16,7 @@ import static com.addev.hrportal.utils.Toolbox.*;
 
 
 @ExtendWith(ScreenshotOnFailureExtension.class)
-public class _03_A_SaisieComplexeTest extends _00_AbstractTest {
+public class _03_SaisieComplexeTest extends _00_AbstractTest {
 
 	/**
 	 * TEST STARTS HERE
