@@ -34,7 +34,7 @@ public class _03_A_SaisieComplexeTest extends _00_AbstractTest {
 			put("Firstname", name);
 			put("Date", getCurrentDate());
 		}};
-		LOGGER.info(name);
+
 		LOGGER.info("******************************* DEBUT DU TEST *******************************");
 		LOGGER.info("Initialize homepage");
 		AccueilPage Accueil = new AccueilPage(driver);
