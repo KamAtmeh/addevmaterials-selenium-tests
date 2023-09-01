@@ -6,6 +6,7 @@ import com.addev.hrportal.pageobjects.AccueilPage;
 import com.addev.hrportal.pageobjects.JobsPage;
 import org.junit.jupiter.api.extension.ExtendWith;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -27,7 +28,13 @@ public class _03_A_SaisieComplexeTest extends _00_AbstractTest {
 		String titreDeLaPageAccueil = "Portail - RH";
 		String titreJobOpening = "New job opening";
 		String name = generateRandomString(false);
-
+		// Create a HashMap and add keys and values in one instance
+		Map<String, String> infoMap = new LinkedHashMap<String, String>() {{
+			put("Lastname", name);
+			put("Firstname", name);
+			put("Date", getCurrentDate());
+		}};
+		LOGGER.info(name);
 		LOGGER.info("******************************* DEBUT DU TEST *******************************");
 		LOGGER.info("Initialize homepage");
 		AccueilPage Accueil = new AccueilPage(driver);
@@ -58,9 +65,6 @@ public class _03_A_SaisieComplexeTest extends _00_AbstractTest {
 		LOGGER.info("Select Pays");
 		String pays = "France";
 		selectValueMenu(wait, Jobs.inputPays, pays);
-		LOGGER.info("Select Software Licenses and Professional tools");
-		Map<String, String> portalToolsMap = getPortalToolsMap(pays);
-		selectPortalTools(wait, portalToolsMap);
 		LOGGER.info("Click on Continue");
 		clickElement(wait, Jobs.buttonContinue);
 		LOGGER.info("Input First Name");
@@ -73,6 +77,10 @@ public class _03_A_SaisieComplexeTest extends _00_AbstractTest {
 		clickElement(wait, Jobs.buttonJobSpecifications);
 		LOGGER.info("Verify that title page is \"{}\"", titreJobOpening);
 		assertEquals(titreJobOpening, Jobs.titreNewJobOpening.getText(), "[KO] Jobs page title is not as expected");
+		LOGGER.info("Select Software Licenses and Professional tools");
+		Map<String, String> portalToolsMap = getPortalToolsMap(pays);
+		infoMap.putAll(portalToolsMap);
+		selectPortalTools(wait, portalToolsMap);
 		LOGGER.info("Click on Continue");
 		clickElement(wait, Jobs.buttonContinue);
 		LOGGER.info("Click on Save & Exit");
@@ -81,8 +89,10 @@ public class _03_A_SaisieComplexeTest extends _00_AbstractTest {
 		closeDialog();
 		LOGGER.info("Verify that user is back on home page");
 		assertTrue(Accueil.titrePageAccueil.isDisplayed(), "[KO] User is not back on homepage");
-		LOGGER.info("Verify that emails have been sent to the correct address and that the email contains the chosen tool");
-		assertEquals(portalToolsMap, getEmailTools(name), "[KO] Emails and tools are not correct");
+		LOGGER.info("Verify that emails and info have been sent to the correct address and that the email contains the chosen tool");
+		Map<String, String> emailTrace = getEmailTools(name);
+		emailTrace.remove("Trigramme");
+		assertEquals(infoMap, emailTrace, "[KO] Emails and tools are not correct");
 		LOGGER.info("[OK] Submission completed");
 
     }

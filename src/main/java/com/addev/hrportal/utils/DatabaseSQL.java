@@ -9,6 +9,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import static com.addev.hrportal.pageobjects.IConstantes.*;
+import static com.addev.hrportal.utils.Toolbox.getInfoFromHTML;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -120,7 +121,7 @@ public class DatabaseSQL extends Logging {
         Connection connection = null;
 
         try {
-            // Connect to the databse
+            // Connect to the database
             connection = connectToDatabase();
             // Initialize statement
             statement = connection.createStatement();
@@ -132,20 +133,8 @@ public class DatabaseSQL extends Logging {
 
                 // Retrieve HTML trace
                 String htmlTable= resultSet.getString("trace");
-                // Parse String to HTML
-                Document doc = Jsoup.parse(htmlTable);
-                // Get nodes
-                Elements nomNode = doc.selectXpath("//p[contains(text(), 'Lastname')]/../following-sibling::td/p");
-                Elements prenomNode = doc.selectXpath("//p[contains(text(), 'Firstname')]/../following-sibling::td/p");
-                Elements dateNode = doc.selectXpath("//p[contains(text(), 'Date')]/../following-sibling::td/p");
-                Elements trigrammeNode = doc.selectXpath("//p[contains(text(), 'Trigramme')]/../following-sibling::td/p");
-                // Set hashmap keys
-                String[] keys = {"Lastname", "Firstname", "Date", "Trigramme"};
-                // Retrieve the text of the selected node(s) and add them as hashmap values
-                String[] values = {nomNode.first().text(), prenomNode.first().text(), dateNode.first().text(), trigrammeNode.text()};
-                for (int i = 0; i < keys.length; i++) {
-                    responseMap.put(keys[i], values[i]);
-                }
+                // Get email info
+                responseMap = getInfoFromHTML(htmlTable, "simple");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -178,6 +167,7 @@ public class DatabaseSQL extends Logging {
 
         // Create a Map to to stock email trace
         Map<String, String> responseMap = new LinkedHashMap<>();
+        Map<String, String> emailInfo = new LinkedHashMap<>();
         ResultSet resultSet = null;
         Statement statement = null;
         Connection connection = null;
@@ -214,8 +204,14 @@ public class DatabaseSQL extends Logging {
                     email = matcher.group(1);
                 }
 
+                // Add tool and email to map
                 responseMap.put(besoinsText, email);
+                // Retrieve info in email
+                emailInfo.putAll(getInfoFromHTML(htmlTable, "complexe"));
             }
+
+            // Add info to tools map
+            responseMap.putAll(emailInfo);
 
         } catch (SQLException e) {
             e.printStackTrace();

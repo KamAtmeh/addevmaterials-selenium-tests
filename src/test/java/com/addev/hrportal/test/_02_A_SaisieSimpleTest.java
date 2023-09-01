@@ -80,8 +80,6 @@ public class _02_A_SaisieSimpleTest extends _00_AbstractTest {
 		LOGGER.info("Verify that email contains the correct information");
 		emailInfo.remove("Trigramme");
 		assertEquals(infoMap, emailInfo, "[KO] Information in email are not correct");
-		System.out.print(infoMap);
-		System.out.print(getEmailInfo(name));
 		LOGGER.info("[OK] Submission completed");
 
     }

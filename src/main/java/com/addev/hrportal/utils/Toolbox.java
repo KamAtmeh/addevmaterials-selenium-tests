@@ -2,7 +2,11 @@ package com.addev.hrportal.utils;
 
 
 import org.apache.commons.io.FileUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.openqa.selenium.*;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -15,10 +19,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Random;
+import java.util.*;
 
 import static com.addev.hrportal.pageobjects.AbstractPage.driver;
 import static com.addev.hrportal.pageobjects.IConstantes.NAVIGATEUR;
@@ -140,7 +141,6 @@ public class Toolbox extends Logging {
             } catch (StaleElementReferenceException ex) {
                 stale = true;
             } catch (ElementClickInterceptedException ex2) {
-                LOGGER.info("Stale");
                 // Use JavaScript to click on elements if hidden behind other elements
                 ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
                 try {
@@ -306,6 +306,45 @@ public class Toolbox extends Logging {
                 popupPresent = false;
             }
         }
+    }
+
+
+    public static Map<String, String> getInfoFromHTML(String htmlTrace, String saisie){
+        String nom = null;
+        String prenom = null;
+
+        // Create a Map to to stock email trace
+        Map<String, String> responseMap = new LinkedHashMap<>();
+
+        // Parse String to HTML
+        Document doc = Jsoup.parse(htmlTrace);
+
+        switch (saisie) {
+            case "simple" :
+                nom = "Lastname";
+                prenom = "Firstname";
+                break;
+
+            case "complexe" :
+                nom = "Nom";
+                prenom = "Prénom";
+                break;
+        }
+
+        // Get nodes
+        Elements nomNode = doc.selectXpath("//p[contains(text(), '" + nom + "')]/../following-sibling::td/p");
+        Elements prenomNode = doc.selectXpath("//p[contains(text(), '" + prenom + "')]/../following-sibling::td/p");
+        Elements dateNode = doc.selectXpath("//p[contains(text(), 'Date')]/../following-sibling::td/p");
+        Elements trigrammeNode = doc.selectXpath("//p[contains(text(), 'Trigramme')]/../following-sibling::td/p");
+        // Set hashmap keys
+        String[] keys = {"Lastname", "Firstname", "Date", "Trigramme"};
+        // Retrieve the text of the selected node(s) and add them as hashmap values
+        String[] values = {nomNode.first().text(), prenomNode.first().text(), dateNode.first().text(), trigrammeNode.text()};
+        for (int i = 0; i < keys.length; i++) {
+            responseMap.put(keys[i], values[i]);
+        }
+
+        return responseMap;
     }
 
 
